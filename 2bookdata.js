@@ -33,3 +33,31 @@ const BooksData = mongoose.model('BooksData', booksSchema);
 
 // Export the BooksData model to be used in other parts of the application
 module.exports = BooksData;
+
+
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+const BooksData = require('./booksModel'); // Import the BooksData model
+
+// Example usage:
+const newBook = new BooksData({
+    title: 'Sample Book',
+    author: 'John Doe',
+    isbn: '978-1234567890',
+    price: 29.99,
+    quantity: 10,
+    image: 'https://example.com/sample-book.jpg'
+});
+
+// Save the new book document to the MongoDB collection
+newBook.save()
+    .then(savedBook => {
+        console.log('Saved book:', savedBook);
+    })
+    .catch(error => {
+        console.error('Error saving book:', error);
+    });
+
