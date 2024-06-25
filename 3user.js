@@ -60,3 +60,35 @@ const UserData = mongoose.model('UserData', userSchema);
 
 // Export the UserData model to be used in other parts of the application
 module.exports = UserData;
+
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+const UserData = require('./userModel'); // Import the UserData model
+
+// Example usage:
+const newUser = new UserData({
+    name: 'John Doe',
+    password: 'password123',
+    email: 'john.doe@example.com',
+    userid: 12345,
+    isAdmin: false
+});
+
+// Save the new user document to the MongoDB collection
+newUser.save()
+    .then(savedUser => {
+        console.log('Saved user:', savedUser);
+    })
+    .catch(error => {
+        console.error('Error saving user:', error);
+    });
+
+// Example of comparing passwords
+newUser.comparePassword('password123')
+    .then(isMatch => {
+        console.log('Passwords match:', isMatch);
+    })
+    .catch(error => {
+        console.error('Error comparing passwords:', error);
+    });
